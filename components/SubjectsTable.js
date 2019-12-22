@@ -5,25 +5,18 @@ import {
 import { DataTable } from 'react-native-paper';
 
 export default class SubjectsTable extends Component {
-    renderHeadTable(element, index){
-        if(index === 0){
-            return(
-                <DataTable.Title theme={{ colors: { text: '#FFF' } }}>{element}</DataTable.Title>
-             );
-        }else{
-            return(
-                <DataTable.Title theme={{ colors: { text: '#FFF' } }} numeric>{element}</DataTable.Title>
-             );
-        }
-          
-    }
-    renderBodyTable(element){
+    renderHeadTable = (element, index) => {
         return(
-            <DataTable.Row>
+            <DataTable.Title style={{flex: (index > 0 ? 1 : 2), justifyContent: 'center'}} accessible={true} accessibilityLabel={element} key={index} theme={{ colors: { text: '#FFF' } }}>{element}</DataTable.Title>
+        );
+    }
+    renderBodyTable = (element, eindex) => {
+        return(
+            <DataTable.Row accessible={false}>
                 {
-                    element.map(data => {
+                    element.map((data, index) => {
                             return(
-                                <DataTable.Cell numeric>{data}</DataTable.Cell>
+                                <DataTable.Cell style={{flex: (index > 0 ? 1 : 2), justifyContent: 'center'}} accessible={true} accessibilityLabel={this.props.accessibilitylabel[eindex][index]} key={index}>{data}</DataTable.Cell>
                             );
                         })
                 }
@@ -31,10 +24,11 @@ export default class SubjectsTable extends Component {
         )
     }
     render(){
+        console.log(this.props.accessibilitylabel)
         return(
             <View>  
                 <DataTable>
-                    <DataTable.Header style={{backgroundColor: 'green'}}>
+                    <DataTable.Header style={{borderTopLeftRadius: 5, borderTopRightRadius: 5, backgroundColor: 'blue'}}>
                     {
                         this.props.headData.map((element, index) => {
                             return(this.renderHeadTable(element, index));
@@ -42,8 +36,8 @@ export default class SubjectsTable extends Component {
                     }
                     </DataTable.Header>
                     {
-                        this.props.bodyData.map(element => {
-                            return(this.renderBodyTable(element));
+                        this.props.bodyData.map((element, index) => {
+                            return(this.renderBodyTable(element, index));
                         })
                     }
                 </DataTable>

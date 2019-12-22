@@ -4,6 +4,7 @@ import {
     View,
     Text,
     TouchableOpacity,
+    Dimensions
   } from 'react-native';
 
 
@@ -30,13 +31,11 @@ bottomNav: {
     height: 75,
     width: '100%',
     backgroundColor: 'white',
-    position: 'absolute',
-    bottom: 0,
     flexDirection: 'row',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
 },
 buttonNav: {
-    backgroundColor: 'green',
+    backgroundColor: 'blue',
     width: '33%',
     alignItems: 'center',
     justifyContent: 'center'

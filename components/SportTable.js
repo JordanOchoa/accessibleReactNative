@@ -4,15 +4,15 @@ import {
   } from 'react-native';
 import { DataTable } from 'react-native-paper';
 
-export default class CarrerTable extends Component {
+export default class SportTable extends Component {
     renderHeadTable = (element, index) => {
         return(
-            <DataTable.Title style={{flex: (index < 4 ? 1 : 2), justifyContent: 'center'}} key={index} theme={{ colors: { text: '#FFF' } }}>{element}</DataTable.Title>
+            <DataTable.Title accessible={true} accessibilityLabel={element} style={{flex: (index > 0 ? 1 : 3), justifyContent: 'center'}} key={index} theme={{ colors: { text: '#FFF' } }}>{element}</DataTable.Title>
         );   
     }
     renderBodyTable = (data, index) => {
         return(
-            <DataTable.Cell style={{flex: (index < 4 ? 1 : 2), justifyContent: 'center'}} key={index}>{data}</DataTable.Cell>
+            <DataTable.Cell accessible={true} accessibilityLabel={this.props.accessibilitylabel[index]} style={{flex: (index > 0 ? 1 : 3), justifyContent: 'center'}} key={index}>{data}</DataTable.Cell>
         );
     }
     render(){
@@ -26,7 +26,7 @@ export default class CarrerTable extends Component {
                         })
                     }
                     </DataTable.Header>
-                    <DataTable.Row>
+                    <DataTable.Row accessible={false}>
                         {
                             this.props.bodyData.map((data, index) => {
                                 return(this.renderBodyTable(data, index));
